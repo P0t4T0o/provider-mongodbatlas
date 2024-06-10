@@ -5,7 +5,6 @@ cover.out
 /vendor
 /.vendor-new
 .DS_Store
-/.go-version
 
 # ignore IDE folders
 .vscode/

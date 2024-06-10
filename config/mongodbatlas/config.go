@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/upbound/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/config"
 
-	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
+	"github.com/crossplane-contrib/provider-mongodb-atlas/config/common"
 )
 
 // Configure configures the root group
@@ -40,6 +40,9 @@ func Configure(p *config.Provider) {
 			return common.Base64EncodeTokens("cluster_id", parts[1], "cluster_name", parameters["name"], "project_id", parameters["project_id"], "provider_name", parameters["provider_name"])
 		}
 		r.UseAsync = true
+		r.References["project_id"] = config.Reference{
+			Type: "Project",
+		}
 	})
 	p.AddResourceConfigurator("mongodbatlas_advanced_cluster", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
@@ -52,10 +55,14 @@ func Configure(p *config.Provider) {
 			}
 			return common.Base64EncodeTokens("cluster_id", parts[1], "cluster_name", parameters["name"], "project_id", parameters["project_id"])
 		}
+		// https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/advanced_cluster#argument-reference
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"bi_connector"},
 		}
 		r.UseAsync = true
+		r.References["project_id"] = config.Reference{
+			Type: "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project",
+		}
 	})
 }
 

@@ -1,0 +1,41 @@
+apiVersion: x509.mongodbatlas.crossplane.io/v1alpha1
+kind: AuthenticationDatabaseUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: x509/v1alpha1/authenticationdatabaseuser
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    monthsUntilExpiration: 2
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: user
+    usernameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: user
+
+---
+
+apiVersion: database.mongodbatlas.crossplane.io/v1alpha2
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: x509/v1alpha1/authenticationdatabaseuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+spec:
+  forProvider:
+    database_name: $external
+    labels:
+    - key: My Key
+      value: My Value
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    roles:
+    - databaseName: admin
+      roleName: atlasAdmin
+    x509Type: MANAGED

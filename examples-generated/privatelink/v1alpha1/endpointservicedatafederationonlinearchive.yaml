@@ -1,0 +1,33 @@
+apiVersion: privatelink.mongodbatlas.crossplane.io/v1alpha1
+kind: EndpointServiceDataFederationOnlineArchive
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservicedatafederationonlinearchive
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    comment: Test
+    customerEndpointDnsName: vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com
+    endpointId: vpce-046cf43c79424d4c9
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: atlas-project
+    providerName: AWS
+    region: US_EAST_1
+
+---
+
+apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatelink/v1alpha1/endpointservicedatafederationonlinearchive
+  labels:
+    testing.upbound.io/example-name: atlas-project
+  name: atlas-project
+spec:
+  forProvider:
+    name: ${var.atlas_project_name}
+    orgId: ${var.atlas_org_id}

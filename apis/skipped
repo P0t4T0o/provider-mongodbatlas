@@ -1,0 +1,5 @@
+Available, skipped, total, coverage: 51, 4, 55, 92.7%
+mongodbatlas_push_based_log_export
+mongodbatlas_search_deployment
+mongodbatlas_stream_instance
+mongodbatlas_stream_connection

@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/upbound/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/config"
 
-	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
+	"github.com/crossplane-contrib/provider-mongodb-atlas/config/common"
 )
 
 // Configure configures the root group
@@ -39,11 +39,16 @@ func Configure(p *config.Provider) {
 			}
 			return parts[1], nil
 		}
+		// https://github.com/crossplane/upjet/issues/372#issuecomment-1999277392
+		r.ExternalName.OmittedFields = []string{"ip_addresses"}
 	})
 
 	p.AddResourceConfigurator("mongodbatlas_project_ip_access_list", func(r *config.Resource) {
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"ip_address"},
+		}
+		r.References["project_id"] = config.Reference{
+			Type: "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project",
 		}
 	})
 }
