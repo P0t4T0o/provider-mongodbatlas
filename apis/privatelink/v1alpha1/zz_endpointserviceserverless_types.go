@@ -22,7 +22,7 @@ type EndpointServiceServerlessInitParameters struct {
 	Comment *string `json:"comment,omitempty" tf:"comment,omitempty"`
 
 	// Unique 24-hexadecimal digit string that identifies the private endpoint.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/privatelink/v1alpha1.EndpointServerless
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/privatelink/v1alpha1.EndpointServerless
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("endpoint_id",true)
 	EndpointID *string `json:"endpointId,omitempty" tf:"endpoint_id,omitempty"`
 
@@ -35,7 +35,7 @@ type EndpointServiceServerlessInitParameters struct {
 	EndpointIDSelector *v1.Selector `json:"endpointIdSelector,omitempty" tf:"-"`
 
 	// Human-readable label that identifies the serverless instance.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/serverless/v1alpha1.Instance
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/serverless/v1alpha1.Instance
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	InstanceName *string `json:"instanceName,omitempty" tf:"instance_name,omitempty"`
 
@@ -51,7 +51,7 @@ type EndpointServiceServerlessInitParameters struct {
 	PrivateEndpointIPAddress *string `json:"privateEndpointIpAddress,omitempty" tf:"private_endpoint_ip_address,omitempty"`
 
 	// Unique 24-digit hexadecimal string that identifies the project.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/privatelink/v1alpha1.EndpointServerless
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/privatelink/v1alpha1.EndpointServerless
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -110,7 +110,7 @@ type EndpointServiceServerlessParameters struct {
 	Comment *string `json:"comment,omitempty" tf:"comment,omitempty"`
 
 	// Unique 24-hexadecimal digit string that identifies the private endpoint.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/privatelink/v1alpha1.EndpointServerless
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/privatelink/v1alpha1.EndpointServerless
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("endpoint_id",true)
 	// +kubebuilder:validation:Optional
 	EndpointID *string `json:"endpointId,omitempty" tf:"endpoint_id,omitempty"`
@@ -124,7 +124,7 @@ type EndpointServiceServerlessParameters struct {
 	EndpointIDSelector *v1.Selector `json:"endpointIdSelector,omitempty" tf:"-"`
 
 	// Human-readable label that identifies the serverless instance.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/serverless/v1alpha1.Instance
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/serverless/v1alpha1.Instance
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	// +kubebuilder:validation:Optional
 	InstanceName *string `json:"instanceName,omitempty" tf:"instance_name,omitempty"`
@@ -142,7 +142,7 @@ type EndpointServiceServerlessParameters struct {
 	PrivateEndpointIPAddress *string `json:"privateEndpointIpAddress,omitempty" tf:"private_endpoint_ip_address,omitempty"`
 
 	// Unique 24-digit hexadecimal string that identifies the project.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/privatelink/v1alpha1.EndpointServerless
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/privatelink/v1alpha1.EndpointServerless
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`

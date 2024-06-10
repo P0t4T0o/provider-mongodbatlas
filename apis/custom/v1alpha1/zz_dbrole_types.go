@@ -51,7 +51,7 @@ type DBRoleInitParameters struct {
 	InheritedRoles []InheritedRolesInitParameters `json:"inheritedRoles,omitempty" tf:"inherited_roles,omitempty"`
 
 	// The unique ID for the project to create the database user.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/custom/v1alpha1.DBRole
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/custom/v1alpha1.DBRole
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -90,7 +90,7 @@ type DBRoleParameters struct {
 	InheritedRoles []InheritedRolesParameters `json:"inheritedRoles,omitempty" tf:"inherited_roles,omitempty"`
 
 	// The unique ID for the project to create the database user.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/custom/v1alpha1.DBRole
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/custom/v1alpha1.DBRole
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -114,7 +114,7 @@ type InheritedRolesInitParameters struct {
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
 	// Name of the custom role.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/custom/v1alpha1.DBRole
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/custom/v1alpha1.DBRole
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("role_name",false)
 	RoleName *string `json:"roleName,omitempty" tf:"role_name,omitempty"`
 
@@ -143,7 +143,7 @@ type InheritedRolesParameters struct {
 	DatabaseName *string `json:"databaseName" tf:"database_name,omitempty"`
 
 	// Name of the custom role.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/custom/v1alpha1.DBRole
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/custom/v1alpha1.DBRole
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("role_name",false)
 	// +kubebuilder:validation:Optional
 	RoleName *string `json:"roleName,omitempty" tf:"role_name,omitempty"`

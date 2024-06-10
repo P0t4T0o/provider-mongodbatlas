@@ -35,13 +35,13 @@ import (
 	"github.com/crossplane/crossplane-runtime/pkg/ratelimiter"
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 
-	"github.com/crossplane-contrib/provider-mongodb-atlas/apis"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/apis/v1alpha1"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config"
-	resolverapis "github.com/crossplane-contrib/provider-mongodb-atlas/internal/apis"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/internal/clients"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/internal/controller"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/internal/features"
+	"github.com/crossplane-contrib/provider-mongodbatlas/apis"
+	"github.com/crossplane-contrib/provider-mongodbatlas/apis/v1alpha1"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config"
+	resolverapis "github.com/crossplane-contrib/provider-mongodbatlas/internal/apis"
+	"github.com/crossplane-contrib/provider-mongodbatlas/internal/clients"
+	"github.com/crossplane-contrib/provider-mongodbatlas/internal/controller"
+	"github.com/crossplane-contrib/provider-mongodbatlas/internal/features"
 	tjcontroller "github.com/crossplane/upjet/pkg/controller"
 )
 
@@ -93,7 +93,7 @@ func main() {
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	zl := zap.New(zap.UseDevMode(*debug), UseISO8601())
-	logr := logging.NewLogrLogger(zl.WithName("provider-mongodb-atlas"))
+	logr := logging.NewLogrLogger(zl.WithName("provider-mongodbatlas"))
 	if *debug {
 		// The controller-runtime runs with a no-op logger by default. It is
 		// *very* verbose even at info level, so we only provide it a real
@@ -135,7 +135,7 @@ func main() {
 
 	mgr, err := ctrl.NewManager(cfg, ctrl.Options{
 		LeaderElection:   *leaderElection,
-		LeaderElectionID: "crossplane-leader-election-provider-mongodb-atlas",
+		LeaderElectionID: "crossplane-leader-election-provider-mongodbatlas",
 		Cache: cache.Options{
 			SyncPeriod: syncInterval,
 		},

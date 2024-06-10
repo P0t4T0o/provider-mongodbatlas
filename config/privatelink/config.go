@@ -25,13 +25,13 @@ func Configure(p *config.Provider) {
 
 	p.AddResourceConfigurator("mongodbatlas_privatelink_endpoint", func(r *config.Resource) {
 		r.References["project_id"] = config.Reference{
-			Type: "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project",
+			Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
 		}
 	})
 
 	p.AddResourceConfigurator("mongodbatlas_privatelink_endpoint_service", func(r *config.Resource) {
 		r.References["project_id"] = config.Reference{
-			Type: "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project",
+			Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
 		}
 	})
 }

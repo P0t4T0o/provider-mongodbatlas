@@ -43,7 +43,7 @@ type LakePipelineInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique ID for the project to create a data lake pipeline.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Reference to a Project in mongodbatlas to populate projectId.
@@ -103,7 +103,7 @@ type LakePipelineParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique ID for the project to create a data lake pipeline.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -257,7 +257,7 @@ type SnapshotsParameters struct {
 type SourceInitParameters struct {
 
 	// Human-readable name that identifies the cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
@@ -309,7 +309,7 @@ type SourceObservation struct {
 type SourceParameters struct {
 
 	// Human-readable name that identifies the cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	// +kubebuilder:validation:Optional
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`

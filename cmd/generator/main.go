@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// Package main contains generator configuration for the provider-mongodb-atlas.
+// Package main contains generator configuration for the provider-mongodbatlas.
 package main
 
 import (
@@ -18,7 +18,7 @@ import (
 	"github.com/crossplane/upjet/pkg/pipeline"
 	"gopkg.in/alecthomas/kingpin.v2"
 
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config"
 )
 
 func main() {

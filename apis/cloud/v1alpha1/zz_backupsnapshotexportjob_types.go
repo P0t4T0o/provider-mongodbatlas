@@ -22,7 +22,7 @@ type BackupSnapshotExportJobInitParameters struct {
 	CustomData []CustomDataInitParameters `json:"customData,omitempty" tf:"custom_data,omitempty"`
 
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/cloud/v1alpha1.BackupSnapshotExportBucket
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/cloud/v1alpha1.BackupSnapshotExportBucket
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("export_bucket_id",true)
 	ExportBucketID *string `json:"exportBucketId,omitempty" tf:"export_bucket_id,omitempty"`
 
@@ -96,7 +96,7 @@ type BackupSnapshotExportJobParameters struct {
 	CustomData []CustomDataParameters `json:"customData,omitempty" tf:"custom_data,omitempty"`
 
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/cloud/v1alpha1.BackupSnapshotExportBucket
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/cloud/v1alpha1.BackupSnapshotExportBucket
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("export_bucket_id",true)
 	// +kubebuilder:validation:Optional
 	ExportBucketID *string `json:"exportBucketId,omitempty" tf:"export_bucket_id,omitempty"`

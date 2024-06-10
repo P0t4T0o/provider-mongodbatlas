@@ -16,7 +16,7 @@ import (
 type ClusterConfigInitParameters struct {
 
 	// The name of the Global Cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
@@ -35,7 +35,7 @@ type ClusterConfigInitParameters struct {
 	ManagedNamespaces []ManagedNamespacesInitParameters `json:"managedNamespaces,omitempty" tf:"managed_namespaces,omitempty"`
 
 	// The unique ID for the project to create the database user.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -72,7 +72,7 @@ type ClusterConfigObservation struct {
 type ClusterConfigParameters struct {
 
 	// The name of the Global Cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
 	// +kubebuilder:validation:Optional
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
@@ -94,7 +94,7 @@ type ClusterConfigParameters struct {
 	ManagedNamespaces []ManagedNamespacesParameters `json:"managedNamespaces,omitempty" tf:"managed_namespaces,omitempty"`
 
 	// The unique ID for the project to create the database user.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Cluster
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
 	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`

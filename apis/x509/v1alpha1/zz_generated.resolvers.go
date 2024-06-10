@@ -7,7 +7,7 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha2 "github.com/crossplane-contrib/provider-mongodb-atlas/apis/database/v1alpha2"
+	v1alpha2 "github.com/crossplane-contrib/provider-mongodbatlas/apis/database/v1alpha2"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	resource "github.com/crossplane/upjet/pkg/resource"
 	errors "github.com/pkg/errors"

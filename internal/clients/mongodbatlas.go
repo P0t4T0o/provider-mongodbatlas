@@ -17,7 +17,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/terraform"
 
-	"github.com/crossplane-contrib/provider-mongodb-atlas/apis/v1beta1"
+	"github.com/crossplane-contrib/provider-mongodbatlas/apis/v1beta1"
 )
 
 const (

@@ -29,15 +29,15 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pkg/errors"
 
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config/database"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config/mongodbatlas"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config/privatelink"
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config/project"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config/database"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config/mongodbatlas"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config/privatelink"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config/project"
 )
 
 const (
 	resourcePrefix = "mongodbatlas"
-	modulePath     = "github.com/crossplane-contrib/provider-mongodb-atlas"
+	modulePath     = "github.com/crossplane-contrib/provider-mongodbatlas"
 )
 
 //go:embed schema.json

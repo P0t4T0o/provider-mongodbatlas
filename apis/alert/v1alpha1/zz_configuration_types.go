@@ -28,7 +28,7 @@ type ConfigurationInitParameters struct {
 	Notification []NotificationInitParameters `json:"notification,omitempty" tf:"notification,omitempty"`
 
 	// The ID of the project where the alert configuration will create.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Reference to a Project in mongodbatlas to populate projectId.
@@ -93,7 +93,7 @@ type ConfigurationParameters struct {
 	Notification []NotificationParameters `json:"notification,omitempty" tf:"notification,omitempty"`
 
 	// The ID of the project where the alert configuration will create.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 

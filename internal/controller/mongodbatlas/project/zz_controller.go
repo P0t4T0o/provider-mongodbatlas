@@ -21,8 +21,8 @@ import (
 	"github.com/pkg/errors"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1"
-	features "github.com/crossplane-contrib/provider-mongodb-atlas/internal/features"
+	v1alpha1 "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1"
+	features "github.com/crossplane-contrib/provider-mongodbatlas/internal/features"
 )
 
 // Setup adds a controller that reconciles Project managed resources.

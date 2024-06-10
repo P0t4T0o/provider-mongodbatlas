@@ -23,7 +23,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/config"
 
-	"github.com/crossplane-contrib/provider-mongodb-atlas/config/common"
+	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
 )
 
 // Configure configures the root group
@@ -61,7 +61,7 @@ func Configure(p *config.Provider) {
 		}
 		r.UseAsync = true
 		r.References["project_id"] = config.Reference{
-			Type: "github.com/crossplane-contrib/provider-mongodb-atlas/apis/mongodbatlas/v1alpha1.Project",
+			Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
 		}
 	})
 }

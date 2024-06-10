@@ -1,4 +1,4 @@
-module github.com/crossplane-contrib/provider-mongodb-atlas
+module github.com/crossplane-contrib/provider-mongodbatlas
 
 go 1.22
 
