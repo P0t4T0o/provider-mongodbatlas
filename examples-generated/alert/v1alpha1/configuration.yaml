@@ -29,4 +29,6 @@ spec:
       - GROUP_CLUSTER_MANAGER
       smsEnabled: false
       typeName: GROUP
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

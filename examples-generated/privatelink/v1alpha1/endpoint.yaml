@@ -8,7 +8,9 @@ metadata:
   name: test
 spec:
   forProvider:
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     providerName: AWS/AZURE
     region: US_EAST_1
     timeouts:

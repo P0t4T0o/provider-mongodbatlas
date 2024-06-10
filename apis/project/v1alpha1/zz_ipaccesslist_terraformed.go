@@ -118,6 +118,7 @@ func (tr *IPAccessList) LateInitialize(attrs []byte) (bool, error) {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
 	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+	opts = append(opts, resource.WithNameFilter("CidrBlock"))
 	opts = append(opts, resource.WithNameFilter("IPAddress"))
 
 	li := resource.NewGenericLateInitializer(opts...)

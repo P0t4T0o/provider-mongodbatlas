@@ -31,6 +31,7 @@ import (
 
 	"github.com/crossplane-contrib/provider-mongodb-atlas/config/database"
 	"github.com/crossplane-contrib/provider-mongodb-atlas/config/mongodbatlas"
+	"github.com/crossplane-contrib/provider-mongodb-atlas/config/privatelink"
 	"github.com/crossplane-contrib/provider-mongodb-atlas/config/project"
 )
 
@@ -163,29 +164,5 @@ func init() {
 	ProviderConfiguration.AddConfig(database.Configure)
 	ProviderConfiguration.AddConfig(mongodbatlas.Configure)
 	ProviderConfiguration.AddConfig(project.Configure)
+	ProviderConfiguration.AddConfig(privatelink.Configure)
 }
-
-// // GetProvider returns provider configuration
-// func GetProvider() *ujconfig.Provider {
-// 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, nil,
-// 		ujconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
-// 		ujconfig.WithDefaultResourceOptions(
-// 			gvkOverrides(),
-// 			identifierAssignedByMongoDBAtlas(),
-// 			commonReferences(),
-// 		),
-// 		ujconfig.WithRootGroup("mongodbatlas.crossplane.io"), // crossplane.io naming without jet subgroup
-// 	)
-
-// 	for _, configure := range []func(provider *ujconfig.Provider){
-// 		// add custom config functions
-// 		mongodbatlas.Configure,
-// 		project.Configure,
-// 		database.Configure,
-// 	} {
-// 		configure(pc)
-// 	}
-
-// 	pc.ConfigureResources()
-// 	return pc
-// }

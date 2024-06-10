@@ -8,7 +8,9 @@ metadata:
   name: test
 spec:
   forProvider:
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     roles:
     - GROUP_DATA_ACCESS_READ_WRITE
     username: test-acc-username
