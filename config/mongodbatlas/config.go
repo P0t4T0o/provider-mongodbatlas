@@ -40,9 +40,6 @@ func Configure(p *config.Provider) {
 			return common.Base64EncodeTokens("cluster_id", parts[1], "cluster_name", parameters["name"], "project_id", parameters["project_id"], "provider_name", parameters["provider_name"])
 		}
 		r.UseAsync = true
-		// r.References["project_id"] = config.Reference{
-		// 	Type: "Project",
-		// }
 	})
 	p.AddResourceConfigurator("mongodbatlas_advanced_cluster", func(r *config.Resource) {
 		r.ExternalName = config.NameAsIdentifier
@@ -60,9 +57,6 @@ func Configure(p *config.Provider) {
 			IgnoredFields: []string{"bi_connector"},
 		}
 		r.UseAsync = true
-		// r.References["project_id"] = config.Reference{
-		// 	Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
-		// }
 	})
 }
 

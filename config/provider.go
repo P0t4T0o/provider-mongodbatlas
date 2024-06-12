@@ -30,7 +30,6 @@ import (
 
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/database"
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/mongodbatlas"
-	"github.com/crossplane-contrib/provider-mongodbatlas/config/privatelink"
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/project"
 )
 
@@ -160,5 +159,4 @@ func init() {
 	ProviderConfiguration.AddConfig(database.Configure)
 	ProviderConfiguration.AddConfig(mongodbatlas.Configure)
 	ProviderConfiguration.AddConfig(project.Configure)
-	ProviderConfiguration.AddConfig(privatelink.Configure)
 }
