@@ -8,8 +8,9 @@ package v1alpha1
 import (
 	"context"
 	v1alpha1 "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1"
+	v1alpha2 "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2"
+	common "github.com/crossplane-contrib/provider-mongodbatlas/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
-	resource "github.com/crossplane/upjet/pkg/resource"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -23,12 +24,12 @@ func (mg *ClusterConfig) ResolveReferences(ctx context.Context, c client.Reader)
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.ClusterNameRef,
 		Selector:     mg.Spec.ForProvider.ClusterNameSelector,
 		To: reference.To{
-			List:    &v1alpha1.ClusterList{},
-			Managed: &v1alpha1.Cluster{},
+			List:    &v1alpha2.ClusterList{},
+			Managed: &v1alpha2.Cluster{},
 		},
 	})
 	if err != nil {
@@ -39,12 +40,12 @@ func (mg *ClusterConfig) ResolveReferences(ctx context.Context, c client.Reader)
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
-		Extract:      resource.ExtractParamPath("project_id", false),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.ClusterList{},
-			Managed: &v1alpha1.Cluster{},
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
 		},
 	})
 	if err != nil {
@@ -55,12 +56,12 @@ func (mg *ClusterConfig) ResolveReferences(ctx context.Context, c client.Reader)
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.InitProvider.ClusterNameRef,
 		Selector:     mg.Spec.InitProvider.ClusterNameSelector,
 		To: reference.To{
-			List:    &v1alpha1.ClusterList{},
-			Managed: &v1alpha1.Cluster{},
+			List:    &v1alpha2.ClusterList{},
+			Managed: &v1alpha2.Cluster{},
 		},
 	})
 	if err != nil {
@@ -71,12 +72,12 @@ func (mg *ClusterConfig) ResolveReferences(ctx context.Context, c client.Reader)
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
-		Extract:      resource.ExtractParamPath("project_id", false),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.ClusterList{},
-			Managed: &v1alpha1.Cluster{},
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
 		},
 	})
 	if err != nil {

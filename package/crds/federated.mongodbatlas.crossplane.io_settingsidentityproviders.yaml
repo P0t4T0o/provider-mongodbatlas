@@ -101,10 +101,6 @@ spec:
                   issuerUri:
                     description: Unique string that identifies the issuer of the IdP.
                     type: string
-                  name:
-                    description: Human-readable label that identifies the identity
-                      provider.
-                    type: string
                   protocol:
                     description: The protocol of the identity provider. Either SAML
                       or OIDC.
@@ -182,10 +178,6 @@ spec:
                     type: string
                   issuerUri:
                     description: Unique string that identifies the issuer of the IdP.
-                    type: string
-                  name:
-                    description: Human-readable label that identifies the identity
-                      provider.
                     type: string
                   protocol:
                     description: The protocol of the identity provider. Either SAML
@@ -401,10 +393,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.issuerUri)
                 || (has(self.initProvider) && has(self.initProvider.issuerUri))'
-            - message: spec.forProvider.name is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
-                || (has(self.initProvider) && has(self.initProvider.name))'
           status:
             description: SettingsIdentityProviderStatus defines the observed state
               of SettingsIdentityProvider.
@@ -443,10 +431,6 @@ spec:
                     type: string
                   issuerUri:
                     description: Unique string that identifies the issuer of the IdP.
-                    type: string
-                  name:
-                    description: Human-readable label that identifies the identity
-                      provider.
                     type: string
                   oktaIdpId:
                     description: Unique 20-hexadecimal digit string that identifies

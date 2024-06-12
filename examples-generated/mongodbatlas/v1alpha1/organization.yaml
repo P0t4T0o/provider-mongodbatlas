@@ -1,4 +1,4 @@
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha1
 kind: Organization
 metadata:
   annotations:
@@ -9,7 +9,6 @@ metadata:
 spec:
   forProvider:
     description: test API key from Org Creation Test
-    name: testCreateORG
     orgOwnerId: 6205e5fffff79cde6f
     roleNames:
     - ORG_OWNER

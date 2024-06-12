@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: organizations.mongodbatlas.mongodbatlas.crossplane.io
+  name: organizations.mongodbatlas.crossplane.io
 spec:
-  group: mongodbatlas.mongodbatlas.crossplane.io
+  group: mongodbatlas.crossplane.io
   names:
     categories:
     - crossplane
@@ -93,10 +93,6 @@ spec:
                       set up Multi-Factor Authentication (MFA) before accessing the
                       specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.'
                     type: boolean
-                  name:
-                    description: The name of the organization you want to create.
-                      (Cannot be changed via this Provider after creation.)
-                    type: string
                   orgOwnerId:
                     description: Unique 24-hexadecimal digit string that identifies
                       the Atlas user that you want to assign the Organization Owner
@@ -159,10 +155,6 @@ spec:
                       set up Multi-Factor Authentication (MFA) before accessing the
                       specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.'
                     type: boolean
-                  name:
-                    description: The name of the organization you want to create.
-                      (Cannot be changed via this Provider after creation.)
-                    type: string
                   orgOwnerId:
                     description: Unique 24-hexadecimal digit string that identifies
                       the Atlas user that you want to assign the Organization Owner
@@ -364,10 +356,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.description)
                 || (has(self.initProvider) && has(self.initProvider.description))'
-            - message: spec.forProvider.name is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
-                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.orgOwnerId is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.orgOwnerId)
@@ -403,10 +391,6 @@ spec:
                       set up Multi-Factor Authentication (MFA) before accessing the
                       specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.'
                     type: boolean
-                  name:
-                    description: The name of the organization you want to create.
-                      (Cannot be changed via this Provider after creation.)
-                    type: string
                   orgId:
                     description: The organization id.
                     type: string

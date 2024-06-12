@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: auditings.mongodbatlas.mongodbatlas.crossplane.io
+  name: teams.mongodbatlas.crossplane.io
 spec:
-  group: mongodbatlas.mongodbatlas.crossplane.io
+  group: mongodbatlas.crossplane.io
   names:
     categories:
     - crossplane
     - managed
     - mongodbatlas
-    kind: Auditing
-    listKind: AuditingList
-    plural: auditings
-    singular: auditing
+    kind: Teams
+    listKind: TeamsList
+    plural: teams
+    singular: teams
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Auditing is the Schema for the Auditings API. Provides a Auditing
-          resource.
+        description: Teams is the Schema for the Teamss API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -55,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AuditingSpec defines the desired state of Auditing
+            description: TeamsSpec defines the desired state of Teams
             properties:
               deletionPolicy:
                 default: Delete
@@ -73,104 +72,13 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  auditAuthorizationSuccess:
-                    description: 'Indicates whether the auditing system captures successful
-                      authentication attempts for audit filters using the "atype"
-                      : "authCheck" auditing event. For more information, see auditAuthorizationSuccess.  Warning!
-                      Enabling Audit authorization successes can severely impact cluster
-                      performance. Enable this option with caution.'
-                    type: boolean
-                  auditFilter:
-                    description: JSON-formatted audit filter. For complete documentation
-                      on custom auditing filters, see Configure Audit Filters.
+                  orgId:
                     type: string
-                  enabled:
-                    description: Denotes whether or not the project associated with
-                      the {project_id} has database auditing enabled.  Defaults to
-                      false.
-                    type: boolean
-                  projectId:
-                    description: 'The unique ID for the project to configure auditing.
-                      Note: When changing this value to a different project_id it
-                      will delete the current audit settings for the original project
-                      that was assigned to.'
-                    type: string
-                  projectIdRef:
-                    description: Reference to a Project in mongodbatlas to populate
-                      projectId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  projectIdSelector:
-                    description: Selector for a Project in mongodbatlas to populate
-                      projectId.
-                    properties:
-                      matchControllerRef:
-                        description: |-
-                          MatchControllerRef ensures an object with the same controller reference
-                          as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  usernames:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                 type: object
               initProvider:
                 description: |-
@@ -185,104 +93,13 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  auditAuthorizationSuccess:
-                    description: 'Indicates whether the auditing system captures successful
-                      authentication attempts for audit filters using the "atype"
-                      : "authCheck" auditing event. For more information, see auditAuthorizationSuccess.  Warning!
-                      Enabling Audit authorization successes can severely impact cluster
-                      performance. Enable this option with caution.'
-                    type: boolean
-                  auditFilter:
-                    description: JSON-formatted audit filter. For complete documentation
-                      on custom auditing filters, see Configure Audit Filters.
+                  orgId:
                     type: string
-                  enabled:
-                    description: Denotes whether or not the project associated with
-                      the {project_id} has database auditing enabled.  Defaults to
-                      false.
-                    type: boolean
-                  projectId:
-                    description: 'The unique ID for the project to configure auditing.
-                      Note: When changing this value to a different project_id it
-                      will delete the current audit settings for the original project
-                      that was assigned to.'
-                    type: string
-                  projectIdRef:
-                    description: Reference to a Project in mongodbatlas to populate
-                      projectId.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  projectIdSelector:
-                    description: Selector for a Project in mongodbatlas to populate
-                      projectId.
-                    properties:
-                      matchControllerRef:
-                        description: |-
-                          MatchControllerRef ensures an object with the same controller reference
-                          as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                      policy:
-                        description: Policies for selection.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    type: object
+                  usernames:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                 type: object
               managementPolicies:
                 default:
@@ -451,39 +268,31 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.orgId is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.orgId)
+                || (has(self.initProvider) && has(self.initProvider.orgId))'
+            - message: spec.forProvider.usernames is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.usernames)
+                || (has(self.initProvider) && has(self.initProvider.usernames))'
           status:
-            description: AuditingStatus defines the observed state of Auditing.
+            description: TeamsStatus defines the observed state of Teams.
             properties:
               atProvider:
                 properties:
-                  auditAuthorizationSuccess:
-                    description: 'Indicates whether the auditing system captures successful
-                      authentication attempts for audit filters using the "atype"
-                      : "authCheck" auditing event. For more information, see auditAuthorizationSuccess.  Warning!
-                      Enabling Audit authorization successes can severely impact cluster
-                      performance. Enable this option with caution.'
-                    type: boolean
-                  auditFilter:
-                    description: JSON-formatted audit filter. For complete documentation
-                      on custom auditing filters, see Configure Audit Filters.
-                    type: string
-                  configurationType:
-                    description: 'Denotes the configuration method for the audit filter.
-                      Possible values are:'
-                    type: string
-                  enabled:
-                    description: Denotes whether or not the project associated with
-                      the {project_id} has database auditing enabled.  Defaults to
-                      false.
-                    type: boolean
                   id:
                     type: string
-                  projectId:
-                    description: 'The unique ID for the project to configure auditing.
-                      Note: When changing this value to a different project_id it
-                      will delete the current audit settings for the original project
-                      that was assigned to.'
+                  orgId:
                     type: string
+                  teamId:
+                    type: string
+                  usernames:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                 type: object
               conditions:
                 description: Conditions of the resource.

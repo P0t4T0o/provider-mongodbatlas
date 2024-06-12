@@ -8,5 +8,7 @@ metadata:
   name: test-role
 spec:
   forProvider:
-    projectId: 64259ee860c43338194b0f8e
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     providerName: AWS

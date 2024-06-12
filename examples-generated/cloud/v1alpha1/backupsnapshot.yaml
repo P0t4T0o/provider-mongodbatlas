@@ -32,12 +32,14 @@ spec:
     clusterName: MyCluster
     deliveryTypeConfig:
     - download: true
-    projectId: 5cf5a45a9ccf6400e60981b6
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
     snapshotId: ${mongodbatlas_cloud_backup_snapshot.test.snapshot_id}
 
 ---
 
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
 kind: Cluster
 metadata:
   annotations:

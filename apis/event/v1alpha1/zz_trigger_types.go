@@ -102,11 +102,18 @@ type TriggerInitParameters struct {
 	// The ID of the function associated with the trigger.
 	FunctionID *string `json:"functionId,omitempty" tf:"function_id,omitempty"`
 
-	// The name of the trigger.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create the trigger.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// The type of the trigger. Possible Values: DATABASE, AUTHENTICATION,SCHEDULED
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -168,9 +175,6 @@ type TriggerObservation struct {
 	FunctionName *string `json:"functionName,omitempty" tf:"function_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// The name of the trigger.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique ID for the project to create the trigger.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -246,13 +250,19 @@ type TriggerParameters struct {
 	// +kubebuilder:validation:Optional
 	FunctionID *string `json:"functionId,omitempty" tf:"function_id,omitempty"`
 
-	// The name of the trigger.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create the trigger.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// The type of the trigger. Possible Values: DATABASE, AUTHENTICATION,SCHEDULED
 	// +kubebuilder:validation:Optional
@@ -300,8 +310,6 @@ type Trigger struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.appId) || (has(self.initProvider) && has(self.initProvider.appId))",message="spec.forProvider.appId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
 	Spec   TriggerSpec   `json:"spec"`
 	Status TriggerStatus `json:"status,omitempty"`

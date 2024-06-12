@@ -14,8 +14,6 @@ import (
 )
 
 type TeamsInitParameters_2 struct {
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
 
 	// +listType=set
@@ -24,8 +22,6 @@ type TeamsInitParameters_2 struct {
 
 type TeamsObservation_2 struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
 
@@ -36,9 +32,6 @@ type TeamsObservation_2 struct {
 }
 
 type TeamsParameters_2 struct {
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
@@ -84,7 +77,6 @@ type TeamsStatus struct {
 type Teams struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.orgId) || (has(self.initProvider) && has(self.initProvider.orgId))",message="spec.forProvider.orgId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.usernames) || (has(self.initProvider) && has(self.initProvider.usernames))",message="spec.forProvider.usernames is a required parameter"
 	Spec   TeamsSpec   `json:"spec"`

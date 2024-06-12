@@ -20,7 +20,6 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	"context"
 	_ "embed"
-	"fmt"
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 	"github.com/crossplane/upjet/pkg/registry/reference"
@@ -80,9 +79,6 @@ func GetProvider(_ context.Context, generationProvider bool) (*ujconfig.Provider
 		return nil, errors.Wrapf(err, "cannot get the Terraform provider schema with generation mode set to %t", generationProvider)
 	}
 
-	fmt.Printf("\ninclude list: %v\n", CLIReconciledResourceList())
-	fmt.Printf("\ntf sdk include list: %v\n", TerraformPluginSDKResourceList())
-
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithShortName("mongodbatlas"),
 		ujconfig.WithRootGroup("mongodbatlas.crossplane.io"),
@@ -92,12 +88,12 @@ func GetProvider(_ context.Context, generationProvider bool) (*ujconfig.Provider
 		ujconfig.WithReferenceInjectors([]ujconfig.ReferenceInjector{reference.NewInjector(modulePath)}),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithTerraformProvider(p),
+		ujconfig.WithDefaultResourceOptions(
+			// API group overrides from Terraform import statements
+			groupKindOverride(),
+			commonReferences(),
+		),
 	)
-
-	// // API group overrides from Terraform import statements
-	// for _, r := range pc.Resources {
-	// 	groupKindOverride(r)
-	// }
 
 	// add custom config functions
 	for _, configure := range ProviderConfiguration {

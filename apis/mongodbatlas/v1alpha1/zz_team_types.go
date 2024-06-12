@@ -15,9 +15,6 @@ import (
 
 type TeamInitParameters struct {
 
-	// The name of the team you want to create.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique identifier for the organization you want to associate the team with.
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
 
@@ -28,9 +25,6 @@ type TeamInitParameters struct {
 
 type TeamObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// The name of the team you want to create.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique identifier for the organization you want to associate the team with.
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
@@ -44,10 +38,6 @@ type TeamObservation struct {
 }
 
 type TeamParameters struct {
-
-	// The name of the team you want to create.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique identifier for the organization you want to associate the team with.
 	// +kubebuilder:validation:Optional
@@ -95,7 +85,6 @@ type TeamStatus struct {
 type Team struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.orgId) || (has(self.initProvider) && has(self.initProvider.orgId))",message="spec.forProvider.orgId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.usernames) || (has(self.initProvider) && has(self.initProvider.usernames))",message="spec.forProvider.usernames is a required parameter"
 	Spec   TeamSpec   `json:"spec"`

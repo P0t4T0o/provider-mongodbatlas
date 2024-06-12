@@ -22,15 +22,15 @@ type AuthenticationDatabaseUserInitParameters struct {
 	MonthsUntilExpiration *float64 `json:"monthsUntilExpiration,omitempty" tf:"months_until_expiration,omitempty"`
 
 	// Identifier for the Atlas project associated with the X.509 configuration.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/database/v1alpha2.User
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// Reference to a User in database to populate projectId.
+	// Reference to a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
 
-	// Selector for a User in database to populate projectId.
+	// Selector for a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
@@ -77,16 +77,16 @@ type AuthenticationDatabaseUserParameters struct {
 	MonthsUntilExpiration *float64 `json:"monthsUntilExpiration,omitempty" tf:"months_until_expiration,omitempty"`
 
 	// Identifier for the Atlas project associated with the X.509 configuration.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/database/v1alpha2.User
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// Reference to a User in database to populate projectId.
+	// Reference to a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
 
-	// Selector for a User in database to populate projectId.
+	// Selector for a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 

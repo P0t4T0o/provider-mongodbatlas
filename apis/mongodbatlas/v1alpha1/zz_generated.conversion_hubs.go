@@ -10,9 +10,6 @@ package v1alpha1
 func (tr *Auditing) Hub() {}
 
 // Hub marks this type as a conversion hub.
-func (tr *Cluster) Hub() {}
-
-// Hub marks this type as a conversion hub.
 func (tr *Organization) Hub() {}
 
 // Hub marks this type as a conversion hub.

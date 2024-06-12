@@ -13,7 +13,9 @@ spec:
     containerIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    projectId: ${local.project_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     providerName: AWS
     routeTableCidrBlock: 192.168.0.0/24
     vpcId: vpc-abc123abc123
@@ -31,6 +33,8 @@ metadata:
 spec:
   forProvider:
     atlasCidrBlock: 10.8.0.0/21
-    projectId: ${local.project_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     providerName: AWS
     regionName: US_EAST_1

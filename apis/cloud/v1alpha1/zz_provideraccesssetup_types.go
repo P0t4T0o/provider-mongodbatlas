@@ -73,7 +73,17 @@ type ProviderAccessSetupInitParameters struct {
 	AzureConfig []AzureConfigInitParameters `json:"azureConfig,omitempty" tf:"azure_config,omitempty"`
 
 	// The unique ID for the project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// The cloud provider for which to create a new role. Currently only AWS and AZURE are supported. WARNING Changing the provider_name will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName *string `json:"providerName,omitempty" tf:"provider_name,omitempty"`
@@ -112,8 +122,18 @@ type ProviderAccessSetupParameters struct {
 	AzureConfig []AzureConfigParameters `json:"azureConfig,omitempty" tf:"azure_config,omitempty"`
 
 	// The unique ID for the project
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// The cloud provider for which to create a new role. Currently only AWS and AZURE are supported. WARNING Changing the provider_name will result in destruction of the existing resource and the creation of a new resource.
 	// +kubebuilder:validation:Optional
@@ -156,7 +176,6 @@ type ProviderAccessSetupStatus struct {
 type ProviderAccessSetup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.providerName) || (has(self.initProvider) && has(self.initProvider.providerName))",message="spec.forProvider.providerName is a required parameter"
 	Spec   ProviderAccessSetupSpec   `json:"spec"`
 	Status ProviderAccessSetupStatus `json:"status,omitempty"`

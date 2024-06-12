@@ -9,4 +9,6 @@ metadata:
 spec:
   forProvider:
     enabled: true
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

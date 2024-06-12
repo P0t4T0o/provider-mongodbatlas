@@ -20,9 +20,17 @@ type InstanceInitParameters struct {
 
 	Links []LinksInitParameters `json:"links,omitempty" tf:"links,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	ProviderSettingsBackingProviderName *string `json:"providerSettingsBackingProviderName,omitempty" tf:"provider_settings_backing_provider_name,omitempty"`
 
@@ -54,8 +62,6 @@ type InstanceObservation struct {
 
 	MongoDBVersion *string `json:"mongoDbVersion,omitempty" tf:"mongo_db_version,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	ProviderSettingsBackingProviderName *string `json:"providerSettingsBackingProviderName,omitempty" tf:"provider_settings_backing_provider_name,omitempty"`
@@ -82,11 +88,18 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Links []LinksParameters `json:"links,omitempty" tf:"links,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	ProviderSettingsBackingProviderName *string `json:"providerSettingsBackingProviderName,omitempty" tf:"provider_settings_backing_provider_name,omitempty"`
@@ -185,8 +198,6 @@ type InstanceStatus struct {
 type Instance struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.providerSettingsBackingProviderName) || (has(self.initProvider) && has(self.initProvider.providerSettingsBackingProviderName))",message="spec.forProvider.providerSettingsBackingProviderName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.providerSettingsProviderName) || (has(self.initProvider) && has(self.initProvider.providerSettingsProviderName))",message="spec.forProvider.providerSettingsProviderName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.providerSettingsRegionName) || (has(self.initProvider) && has(self.initProvider.providerSettingsRegionName))",message="spec.forProvider.providerSettingsRegionName is a required parameter"

@@ -255,11 +255,18 @@ type DatabaseInstanceInitParameters struct {
 	// The cloud provider region to which the Federated Instance routes client connections for data processing.
 	DataProcessRegion []DataProcessRegionInitParameters `json:"dataProcessRegion,omitempty" tf:"data_process_region,omitempty"`
 
-	// Name of the Atlas Federated Database Instance.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create a Federated Database Instance.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see databases. An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	StorageDatabases []StorageDatabasesInitParameters `json:"storageDatabases,omitempty" tf:"storage_databases,omitempty"`
@@ -280,9 +287,6 @@ type DatabaseInstanceObservation struct {
 	Hostnames []*string `json:"hostnames,omitempty" tf:"hostnames,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// Name of the Atlas Federated Database Instance.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -307,13 +311,19 @@ type DatabaseInstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	DataProcessRegion []DataProcessRegionParameters `json:"dataProcessRegion,omitempty" tf:"data_process_region,omitempty"`
 
-	// Name of the Atlas Federated Database Instance.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create a Federated Database Instance.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see databases. An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// +kubebuilder:validation:Optional
@@ -665,10 +675,8 @@ type DatabaseInstanceStatus struct {
 type DatabaseInstance struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
-	Spec   DatabaseInstanceSpec   `json:"spec"`
-	Status DatabaseInstanceStatus `json:"status,omitempty"`
+	Spec              DatabaseInstanceSpec   `json:"spec"`
+	Status            DatabaseInstanceStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

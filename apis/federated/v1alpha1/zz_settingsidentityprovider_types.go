@@ -33,9 +33,6 @@ type SettingsIdentityProviderInitParameters struct {
 	// Unique string that identifies the issuer of the IdP.
 	IssuerURI *string `json:"issuerUri,omitempty" tf:"issuer_uri,omitempty"`
 
-	// Human-readable label that identifies the identity provider.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The protocol of the identity provider. Either SAML or OIDC.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
@@ -85,9 +82,6 @@ type SettingsIdentityProviderObservation struct {
 
 	// Unique string that identifies the issuer of the IdP.
 	IssuerURI *string `json:"issuerUri,omitempty" tf:"issuer_uri,omitempty"`
-
-	// Human-readable label that identifies the identity provider.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpID *string `json:"oktaIdpId,omitempty" tf:"okta_idp_id,omitempty"`
@@ -142,10 +136,6 @@ type SettingsIdentityProviderParameters struct {
 	// Unique string that identifies the issuer of the IdP.
 	// +kubebuilder:validation:Optional
 	IssuerURI *string `json:"issuerUri,omitempty" tf:"issuer_uri,omitempty"`
-
-	// Human-readable label that identifies the identity provider.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The protocol of the identity provider. Either SAML or OIDC.
 	// +kubebuilder:validation:Optional
@@ -218,7 +208,6 @@ type SettingsIdentityProvider struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.federationSettingsId) || (has(self.initProvider) && has(self.initProvider.federationSettingsId))",message="spec.forProvider.federationSettingsId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.issuerUri) || (has(self.initProvider) && has(self.initProvider.issuerUri))",message="spec.forProvider.issuerUri is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	Spec   SettingsIdentityProviderSpec   `json:"spec"`
 	Status SettingsIdentityProviderStatus `json:"status,omitempty"`
 }

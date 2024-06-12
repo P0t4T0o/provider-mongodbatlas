@@ -30,6 +30,7 @@ spec:
       - configAccountId: AWS ACCOUNT ID
         configRegion: AWS REGIOn
     functionId: FUNCTION ID
-    name: NAME OF THE TRIGGER
-    projectId: PROJECT ID
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     type: DATABASE

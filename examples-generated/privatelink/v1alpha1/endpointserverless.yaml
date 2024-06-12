@@ -11,5 +11,7 @@ spec:
     instanceNameSelector:
       matchLabels:
         testing.upbound.io/example-name: test
-    projectId: <PROJECT_ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     providerName: AWS

@@ -73,9 +73,6 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  name:
-                    description: Name of the Atlas Data Lake Pipeline.
-                    type: string
                   projectId:
                     description: The unique ID for the project to create a data lake
                       pipeline.
@@ -318,9 +315,6 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  name:
-                    description: Name of the Atlas Data Lake Pipeline.
-                    type: string
                   projectId:
                     description: The unique ID for the project to create a data lake
                       pipeline.
@@ -717,11 +711,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: spec.forProvider.name is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
-                || (has(self.initProvider) && has(self.initProvider.name))'
           status:
             description: LakePipelineStatus defines the observed state of LakePipeline.
             properties:
@@ -765,9 +754,6 @@ spec:
                   lastUpdatedDate:
                     description: Timestamp that indicates the last time that the Data
                       Lake Pipeline was updated.
-                    type: string
-                  name:
-                    description: Name of the Atlas Data Lake Pipeline.
                     type: string
                   projectId:
                     description: The unique ID for the project to create a data lake

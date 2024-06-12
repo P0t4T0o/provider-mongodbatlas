@@ -39,11 +39,9 @@ type IngestionSchedulesParameters struct {
 
 type LakePipelineInitParameters struct {
 
-	// Name of the Atlas Data Lake Pipeline.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create a data lake pipeline.
 	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Reference to a Project in mongodbatlas to populate projectId.
@@ -76,9 +74,6 @@ type LakePipelineObservation struct {
 	// Timestamp that indicates the last time that the Data Lake Pipeline was updated.
 	LastUpdatedDate *string `json:"lastUpdatedDate,omitempty" tf:"last_updated_date,omitempty"`
 
-	// Name of the Atlas Data Lake Pipeline.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create a data lake pipeline.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -98,12 +93,9 @@ type LakePipelineObservation struct {
 
 type LakePipelineParameters struct {
 
-	// Name of the Atlas Data Lake Pipeline.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// The unique ID for the project to create a data lake pipeline.
 	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -257,8 +249,7 @@ type SnapshotsParameters struct {
 type SourceInitParameters struct {
 
 	// Human-readable name that identifies the cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2.Cluster
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
 	// Reference to a Cluster in mongodbatlas to populate clusterName.
@@ -309,8 +300,7 @@ type SourceObservation struct {
 type SourceParameters struct {
 
 	// Human-readable name that identifies the cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2.Cluster
 	// +kubebuilder:validation:Optional
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
@@ -408,9 +398,8 @@ type LakePipelineStatus struct {
 type LakePipeline struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	Spec   LakePipelineSpec   `json:"spec"`
-	Status LakePipelineStatus `json:"status,omitempty"`
+	Spec              LakePipelineSpec   `json:"spec"`
+	Status            LakePipelineStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -12,6 +12,8 @@ spec:
       key: example-key
       name: example-secret
       namespace: upbound-system
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     region: <REGION>
     type: DATADOG

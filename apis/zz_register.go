@@ -11,7 +11,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 
 	v1alpha1 "github.com/crossplane-contrib/provider-mongodbatlas/apis/access/v1alpha1"
-	v1alpha1advanced "github.com/crossplane-contrib/provider-mongodbatlas/apis/advanced/v1alpha1"
 	v1alpha1alert "github.com/crossplane-contrib/provider-mongodbatlas/apis/alert/v1alpha1"
 	v1alpha1api "github.com/crossplane-contrib/provider-mongodbatlas/apis/api/v1alpha1"
 	v1alpha1backup "github.com/crossplane-contrib/provider-mongodbatlas/apis/backup/v1alpha1"
@@ -27,6 +26,7 @@ import (
 	v1alpha1ldap "github.com/crossplane-contrib/provider-mongodbatlas/apis/ldap/v1alpha1"
 	v1alpha1maintenance "github.com/crossplane-contrib/provider-mongodbatlas/apis/maintenance/v1alpha1"
 	v1alpha1mongodbatlas "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1"
+	v1alpha2mongodbatlas "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2"
 	v1alpha1network "github.com/crossplane-contrib/provider-mongodbatlas/apis/network/v1alpha1"
 	v1alpha1online "github.com/crossplane-contrib/provider-mongodbatlas/apis/online/v1alpha1"
 	v1alpha1org "github.com/crossplane-contrib/provider-mongodbatlas/apis/org/v1alpha1"
@@ -45,7 +45,6 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
-		v1alpha1advanced.SchemeBuilder.AddToScheme,
 		v1alpha1alert.SchemeBuilder.AddToScheme,
 		v1alpha1api.SchemeBuilder.AddToScheme,
 		v1alpha1backup.SchemeBuilder.AddToScheme,
@@ -61,6 +60,7 @@ func init() {
 		v1alpha1ldap.SchemeBuilder.AddToScheme,
 		v1alpha1maintenance.SchemeBuilder.AddToScheme,
 		v1alpha1mongodbatlas.SchemeBuilder.AddToScheme,
+		v1alpha2mongodbatlas.SchemeBuilder.AddToScheme,
 		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1online.SchemeBuilder.AddToScheme,
 		v1alpha1org.SchemeBuilder.AddToScheme,

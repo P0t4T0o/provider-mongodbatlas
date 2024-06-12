@@ -27,9 +27,6 @@ type OrganizationInitParameters struct {
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired *bool `json:"multiFactorAuthRequired,omitempty" tf:"multi_factor_auth_required,omitempty"`
 
-	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. MongoDB Atlas Admin API - Get User By Username
 	OrgOwnerID *string `json:"orgOwnerId,omitempty" tf:"org_owner_id,omitempty"`
 
@@ -56,9 +53,6 @@ type OrganizationObservation struct {
 
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired *bool `json:"multiFactorAuthRequired,omitempty" tf:"multi_factor_auth_required,omitempty"`
-
-	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The organization id.
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
@@ -91,10 +85,6 @@ type OrganizationParameters struct {
 	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	// +kubebuilder:validation:Optional
 	MultiFactorAuthRequired *bool `json:"multiFactorAuthRequired,omitempty" tf:"multi_factor_auth_required,omitempty"`
-
-	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. MongoDB Atlas Admin API - Get User By Username
 	// +kubebuilder:validation:Optional
@@ -147,7 +137,6 @@ type Organization struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.description) || (has(self.initProvider) && has(self.initProvider.description))",message="spec.forProvider.description is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.orgOwnerId) || (has(self.initProvider) && has(self.initProvider.orgOwnerId))",message="spec.forProvider.orgOwnerId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.roleNames) || (has(self.initProvider) && has(self.initProvider.roleNames))",message="spec.forProvider.roleNames is a required parameter"
 	Spec   OrganizationSpec   `json:"spec"`

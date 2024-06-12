@@ -12,7 +12,6 @@ spec:
     - yourdomain.com
     federationSettingsId: 627a9687f7f7f7f774de306f14
     issuerUri: http://www.okta.com/exk17q7f7f7f7fp50h8
-    name: mongodb_federation_test
     requestBinding: HTTP-POST
     responseSignatureAlgorithm: SHA-256
     ssoDebugEnabled: true

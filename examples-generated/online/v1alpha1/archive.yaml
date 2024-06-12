@@ -22,7 +22,9 @@ spec:
       order: 1
     - fieldName: lastName
       order: 2
-    projectId: ${var.project_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     schedule:
     - endHour: 1
       endMinute: 1

@@ -9,11 +9,13 @@ metadata:
 spec:
   forProvider:
     enabled: true
-    projectId: ${var.atlasprojectid}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
 
 ---
 
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
 kind: Cluster
 metadata:
   annotations:

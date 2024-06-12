@@ -101,7 +101,8 @@ spec:
                       the X.509 configuration.
                     type: string
                   projectIdRef:
-                    description: Reference to a User in database to populate projectId.
+                    description: Reference to a Project in mongodbatlas to populate
+                      projectId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -135,7 +136,8 @@ spec:
                     - name
                     type: object
                   projectIdSelector:
-                    description: Selector for a User in database to populate projectId.
+                    description: Selector for a Project in mongodbatlas to populate
+                      projectId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -293,7 +295,8 @@ spec:
                       the X.509 configuration.
                     type: string
                   projectIdRef:
-                    description: Reference to a User in database to populate projectId.
+                    description: Reference to a Project in mongodbatlas to populate
+                      projectId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -327,7 +330,8 @@ spec:
                     - name
                     type: object
                   projectIdSelector:
-                    description: Selector for a User in database to populate projectId.
+                    description: Selector for a Project in mongodbatlas to populate
+                      projectId.
                     properties:
                       matchControllerRef:
                         description: |-

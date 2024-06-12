@@ -21,7 +21,17 @@ type AtRestInitParameters struct {
 	GoogleCloudKMSConfig []GoogleCloudKMSConfigInitParameters `json:"googleCloudKmsConfig,omitempty" tf:"google_cloud_kms_config,omitempty"`
 
 	// The unique identifier for the project.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 }
 
 type AtRestObservation struct {
@@ -49,8 +59,18 @@ type AtRestParameters struct {
 	GoogleCloudKMSConfig []GoogleCloudKMSConfigParameters `json:"googleCloudKmsConfig,omitempty" tf:"google_cloud_kms_config,omitempty"`
 
 	// The unique identifier for the project.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in mongodbatlas to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 }
 
 type AwsKMSConfigInitParameters struct {
@@ -261,9 +281,8 @@ type AtRestStatus struct {
 type AtRest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
-	Spec   AtRestSpec   `json:"spec"`
-	Status AtRestStatus `json:"status,omitempty"`
+	Spec              AtRestSpec   `json:"spec"`
+	Status            AtRestStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

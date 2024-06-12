@@ -1,4 +1,4 @@
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha1
 kind: Team
 metadata:
   annotations:
@@ -8,7 +8,6 @@ metadata:
   name: test
 spec:
   forProvider:
-    name: myNewTeam
     orgId: <ORGANIZATION-ID>
     usernames:
     - user1@email.com

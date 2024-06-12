@@ -13,12 +13,14 @@ spec:
     - automated: true
       targetClusterName: MyCluster
       targetProjectId: 5cf5a45a9ccf6400e60981b6
-    projectId: ${mongodbatlas_cloud_provider_snapshot.test.project_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
     snapshotId: ${mongodbatlas_cloud_provider_snapshot.test.snapshot_id}
 
 ---
 
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
 kind: Cluster
 metadata:
   annotations:

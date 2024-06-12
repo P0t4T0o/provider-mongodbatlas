@@ -9,6 +9,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -596,15 +597,20 @@ func (in *DatabaseInstanceInitParameters) DeepCopyInto(out *DatabaseInstanceInit
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.StorageDatabases != nil {
 		in, out := &in.StorageDatabases, &out.StorageDatabases
@@ -697,11 +703,6 @@ func (in *DatabaseInstanceObservation) DeepCopyInto(out *DatabaseInstanceObserva
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
@@ -755,15 +756,20 @@ func (in *DatabaseInstanceParameters) DeepCopyInto(out *DatabaseInstanceParamete
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.StorageDatabases != nil {
 		in, out := &in.StorageDatabases, &out.StorageDatabases
@@ -880,6 +886,16 @@ func (in *QueryLimitInitParameters) DeepCopyInto(out *QueryLimitInitParameters) 
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.TenantName != nil {
 		in, out := &in.TenantName, &out.TenantName
@@ -1027,6 +1043,16 @@ func (in *QueryLimitParameters) DeepCopyInto(out *QueryLimitParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.TenantName != nil {
 		in, out := &in.TenantName, &out.TenantName
@@ -1361,11 +1387,6 @@ func (in *SettingsIdentityProviderInitParameters) DeepCopyInto(out *SettingsIden
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
 		*out = new(string)
@@ -1511,11 +1532,6 @@ func (in *SettingsIdentityProviderObservation) DeepCopyInto(out *SettingsIdentit
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.OktaIdpID != nil {
 		in, out := &in.OktaIdpID, &out.OktaIdpID
 		*out = new(string)
@@ -1621,11 +1637,6 @@ func (in *SettingsIdentityProviderParameters) DeepCopyInto(out *SettingsIdentity
 	}
 	if in.IssuerURI != nil {
 		in, out := &in.IssuerURI, &out.IssuerURI
-		*out = new(string)
-		**out = **in
-	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

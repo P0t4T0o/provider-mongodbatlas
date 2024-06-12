@@ -9,6 +9,7 @@ import (
 	"context"
 	v1alpha1 "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1"
 	v1alpha11 "github.com/crossplane-contrib/provider-mongodbatlas/apis/serverless/v1alpha1"
+	common "github.com/crossplane-contrib/provider-mongodbatlas/config/common"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	resource "github.com/crossplane/upjet/pkg/resource"
 	errors "github.com/pkg/errors"
@@ -24,7 +25,7 @@ func (mg *Endpoint) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
@@ -40,7 +41,7 @@ func (mg *Endpoint) ResolveReferences(ctx context.Context, c client.Reader) erro
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
@@ -66,7 +67,7 @@ func (mg *EndpointServerless) ResolveReferences(ctx context.Context, c client.Re
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.InstanceNameRef,
 		Selector:     mg.Spec.ForProvider.InstanceNameSelector,
 		To: reference.To{
@@ -81,8 +82,24 @@ func (mg *EndpointServerless) ResolveReferences(ctx context.Context, c client.Re
 	mg.Spec.ForProvider.InstanceNameRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
+		Extract:      common.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.ProjectIDRef,
+		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProjectID")
+	}
+	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.InstanceName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.InitProvider.InstanceNameRef,
 		Selector:     mg.Spec.InitProvider.InstanceNameSelector,
 		To: reference.To{
@@ -96,6 +113,22 @@ func (mg *EndpointServerless) ResolveReferences(ctx context.Context, c client.Re
 	mg.Spec.InitProvider.InstanceName = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.InstanceNameRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
+		Extract:      common.ExtractResourceID(),
+		Reference:    mg.Spec.InitProvider.ProjectIDRef,
+		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ProjectID")
+	}
+	mg.Spec.InitProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ProjectIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -108,7 +141,7 @@ func (mg *EndpointService) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
@@ -124,7 +157,7 @@ func (mg *EndpointService) ResolveReferences(ctx context.Context, c client.Reade
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
@@ -150,7 +183,7 @@ func (mg *EndpointServiceDataFederationOnlineArchive) ResolveReferences(ctx cont
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
-		Extract:      resource.ExtractResourceID(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
@@ -166,7 +199,7 @@ func (mg *EndpointServiceDataFederationOnlineArchive) ResolveReferences(ctx cont
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
-		Extract:      resource.ExtractResourceID(),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
@@ -208,7 +241,7 @@ func (mg *EndpointServiceServerless) ResolveReferences(ctx context.Context, c cl
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.InstanceNameRef,
 		Selector:     mg.Spec.ForProvider.InstanceNameSelector,
 		To: reference.To{
@@ -224,12 +257,12 @@ func (mg *EndpointServiceServerless) ResolveReferences(ctx context.Context, c cl
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
-		Extract:      resource.ExtractParamPath("project_id", false),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &EndpointServerlessList{},
-			Managed: &EndpointServerless{},
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
 		},
 	})
 	if err != nil {
@@ -256,7 +289,7 @@ func (mg *EndpointServiceServerless) ResolveReferences(ctx context.Context, c cl
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.InstanceName),
-		Extract:      resource.ExtractParamPath("name", false),
+		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.InitProvider.InstanceNameRef,
 		Selector:     mg.Spec.InitProvider.InstanceNameSelector,
 		To: reference.To{
@@ -272,12 +305,12 @@ func (mg *EndpointServiceServerless) ResolveReferences(ctx context.Context, c cl
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
-		Extract:      resource.ExtractParamPath("project_id", false),
+		Extract:      common.ExtractResourceID(),
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &EndpointServerlessList{},
-			Managed: &EndpointServerless{},
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
 		},
 	})
 	if err != nil {

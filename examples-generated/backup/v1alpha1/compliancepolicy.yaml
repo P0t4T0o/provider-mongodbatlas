@@ -38,7 +38,9 @@ spec:
     - frequencyInterval: 1
       retentionUnit: years
       retentionValue: 1
-    projectId: <PROJECT-ID>
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     restoreWindowDays: 7
 
 ---
@@ -85,7 +87,7 @@ spec:
 
 ---
 
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
 kind: Cluster
 metadata:
   annotations:

@@ -22,7 +22,7 @@ var gvkMap = map[string]schema.GroupVersionKind{
 
 // gvkOverrides overrides the group, version and kind of the resource if it matches
 // any entry in the gvkMap.
-func gvkOverrides() ujconfig.ResourceOption {
+func groupKindOverride() ujconfig.ResourceOption {
 	return func(r *ujconfig.Resource) {
 		if r.ShortGroup == resourcePrefix {
 			r.ShortGroup = ""

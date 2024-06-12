@@ -19,8 +19,7 @@ type BackupScheduleInitParameters struct {
 	AutoExportEnabled *bool `json:"autoExportEnabled,omitempty" tf:"auto_export_enabled,omitempty"`
 
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2.Cluster
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
 	// Reference to a Cluster in mongodbatlas to populate clusterName.
@@ -51,15 +50,15 @@ type BackupScheduleInitParameters struct {
 	PolicyItemYearly []PolicyItemYearlyInitParameters `json:"policyItemYearly,omitempty" tf:"policy_item_yearly,omitempty"`
 
 	// The unique identifier of the project for the Atlas cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// Reference to a Cluster in mongodbatlas to populate projectId.
+	// Reference to a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
 
-	// Selector for a Cluster in mongodbatlas to populate projectId.
+	// Selector for a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
@@ -144,8 +143,7 @@ type BackupScheduleParameters struct {
 	AutoExportEnabled *bool `json:"autoExportEnabled,omitempty" tf:"auto_export_enabled,omitempty"`
 
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("name",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha2.Cluster
 	// +kubebuilder:validation:Optional
 	ClusterName *string `json:"clusterName,omitempty" tf:"cluster_name,omitempty"`
 
@@ -184,16 +182,16 @@ type BackupScheduleParameters struct {
 	PolicyItemYearly []PolicyItemYearlyParameters `json:"policyItemYearly,omitempty" tf:"policy_item_yearly,omitempty"`
 
 	// The unique identifier of the project for the Atlas cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Cluster
-	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("project_id",false)
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:extractor=github.com/crossplane-contrib/provider-mongodbatlas/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// Reference to a Cluster in mongodbatlas to populate projectId.
+	// Reference to a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
 
-	// Selector for a Cluster in mongodbatlas to populate projectId.
+	// Selector for a Project in mongodbatlas to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 

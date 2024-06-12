@@ -161,7 +161,7 @@ spec:
                       cluster.
                     type: string
                   projectIdRef:
-                    description: Reference to a Cluster in mongodbatlas to populate
+                    description: Reference to a Project in mongodbatlas to populate
                       projectId.
                     properties:
                       name:
@@ -196,7 +196,7 @@ spec:
                     - name
                     type: object
                   projectIdSelector:
-                    description: Selector for a Cluster in mongodbatlas to populate
+                    description: Selector for a Project in mongodbatlas to populate
                       projectId.
                     properties:
                       matchControllerRef:
@@ -342,7 +342,7 @@ spec:
                       cluster.
                     type: string
                   projectIdRef:
-                    description: Reference to a Cluster in mongodbatlas to populate
+                    description: Reference to a Project in mongodbatlas to populate
                       projectId.
                     properties:
                       name:
@@ -377,7 +377,7 @@ spec:
                     - name
                     type: object
                   projectIdSelector:
-                    description: Selector for a Cluster in mongodbatlas to populate
+                    description: Selector for a Project in mongodbatlas to populate
                       projectId.
                     properties:
                       matchControllerRef:

@@ -10,7 +10,6 @@ import (
 	"github.com/crossplane/upjet/pkg/controller"
 
 	listapikey "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/access/listapikey"
-	cluster "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/advanced/cluster"
 	configuration "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/alert/configuration"
 	key "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/api/key"
 	compliancepolicy "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/backup/compliancepolicy"
@@ -37,8 +36,9 @@ import (
 	configurationldap "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/ldap/configuration"
 	verify "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/ldap/verify"
 	window "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/maintenance/window"
+	advancedcluster "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/advancedcluster"
 	auditing "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/auditing"
-	clustermongodbatlas "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/cluster"
+	cluster "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/cluster"
 	organization "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/organization"
 	project "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/project"
 	team "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/team"
@@ -68,7 +68,6 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		listapikey.Setup,
-		cluster.Setup,
 		configuration.Setup,
 		key.Setup,
 		compliancepolicy.Setup,
@@ -95,8 +94,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		configurationldap.Setup,
 		verify.Setup,
 		window.Setup,
+		advancedcluster.Setup,
 		auditing.Setup,
-		clustermongodbatlas.Setup,
+		cluster.Setup,
 		organization.Setup,
 		project.Setup,
 		team.Setup,

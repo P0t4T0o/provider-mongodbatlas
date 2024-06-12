@@ -1,4 +1,4 @@
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha1
 kind: Auditing
 metadata:
   annotations:

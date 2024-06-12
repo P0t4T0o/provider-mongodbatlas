@@ -1,8 +1,8 @@
-apiVersion: mongodbatlas.mongodbatlas.crossplane.io/v1alpha1
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
 kind: Cluster
 metadata:
   annotations:
-    meta.upbound.io/example-id: mongodbatlas/v1alpha1/cluster
+    meta.upbound.io/example-id: mongodbatlas/v1alpha2/cluster
   labels:
     testing.upbound.io/example-name: cluster-test
   name: cluster-test

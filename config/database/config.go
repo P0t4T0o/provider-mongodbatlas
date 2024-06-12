@@ -42,8 +42,8 @@ func Configure(p *config.Provider) {
 		r.ExternalName.GetIDFn = func(_ context.Context, _ string, parameters map[string]interface{}, providerConfig map[string]interface{}) (string, error) {
 			return common.Base64EncodeTokens("auth_database_name", parameters["auth_database_name"], "project_id", parameters["project_id"], "username", parameters["username"])
 		}
-		r.References["project_id"] = config.Reference{
-			Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
-		}
+		// r.References["project_id"] = config.Reference{
+		// 	Type: "github.com/crossplane-contrib/provider-mongodbatlas/apis/mongodbatlas/v1alpha1.Project",
+		// }
 	})
 }
