@@ -1,0 +1,60 @@
+apiVersion: global.mongodbatlas.crossplane.io/v1alpha1
+kind: ClusterConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: global/v1alpha1/clusterconfig
+  labels:
+    testing.upbound.io/example-name: config
+  name: config
+spec:
+  forProvider:
+    clusterNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    customZoneMappings:
+    - location: CA
+      zone: Zone 1
+    managedNamespaces:
+    - collection: publishers
+      customShardKey: city
+      db: mydata
+      isCustomShardKeyHashed: false
+      isShardKeyUnique: false
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+
+---
+
+apiVersion: mongodbatlas.crossplane.io/v1alpha2
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: global/v1alpha1/clusterconfig
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    cloudBackup: true
+    clusterType: GEOSHARDED
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    providerInstanceSizeName: M30
+    providerName: AWS
+    replicationSpecs:
+    - numShards: 1
+      regionsConfig:
+      - electableNodes: 3
+        priority: 7
+        readOnlyNodes: 0
+        regionName: EU_CENTRAL_1
+      zoneName: Zone 1
+    - numShards: 1
+      regionsConfig:
+      - electableNodes: 3
+        priority: 7
+        readOnlyNodes: 0
+        regionName: US_EAST_2
+      zoneName: Zone 2

@@ -1,7 +1,7 @@
 package config
 
 import (
-	ujconfig "github.com/upbound/upjet/pkg/config"
+	ujconfig "github.com/crossplane/upjet/pkg/config"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
@@ -22,7 +22,7 @@ var gvkMap = map[string]schema.GroupVersionKind{
 
 // gvkOverrides overrides the group, version and kind of the resource if it matches
 // any entry in the gvkMap.
-func gvkOverrides() ujconfig.ResourceOption {
+func groupKindOverride() ujconfig.ResourceOption {
 	return func(r *ujconfig.Resource) {
 		if r.ShortGroup == resourcePrefix {
 			r.ShortGroup = ""

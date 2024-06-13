@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/upbound/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/config"
 
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
 )
@@ -39,12 +39,18 @@ func Configure(p *config.Provider) {
 			}
 			return parts[1], nil
 		}
+		// https://github.com/crossplane/upjet/issues/372#issuecomment-1999277392
+		r.ExternalName.OmittedFields = []string{"ip_addresses"}
 	})
 
 	p.AddResourceConfigurator("mongodbatlas_project_ip_access_list", func(r *config.Resource) {
 		r.LateInitializer = config.LateInitializer{
-			IgnoredFields: []string{"ip_address"},
+			IgnoredFields: []string{"ip_address", "cidr_block"},
 		}
+	})
+
+	p.AddResourceConfigurator("mongodbatlas_maintenance_window", func(r *config.Resource) {
+		r.ExternalName.OmittedFields = []string{"start_asap"}
 	})
 }
 

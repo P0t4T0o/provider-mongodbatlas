@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/upbound/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/config"
 
 	"github.com/crossplane-contrib/provider-mongodbatlas/config/common"
 )
@@ -52,6 +52,7 @@ func Configure(p *config.Provider) {
 			}
 			return common.Base64EncodeTokens("cluster_id", parts[1], "cluster_name", parameters["name"], "project_id", parameters["project_id"])
 		}
+		// https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/advanced_cluster#argument-reference
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"bi_connector"},
 		}
