@@ -42,7 +42,6 @@ import (
 	organization "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/organization"
 	project "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/project"
 	team "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/team"
-	teams "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/mongodbatlas/teams"
 	container "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/network/container"
 	peering "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/network/peering"
 	archive "github.com/crossplane-contrib/provider-mongodbatlas/internal/controller/online/archive"
@@ -100,7 +99,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		organization.Setup,
 		project.Setup,
 		team.Setup,
-		teams.Setup,
 		container.Setup,
 		peering.Setup,
 		archive.Setup,

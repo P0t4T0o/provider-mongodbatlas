@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - mongodbatlas
-    kind: Teams
-    listKind: TeamsList
+    kind: Team
+    listKind: TeamList
     plural: teams
-    singular: teams
+    singular: team
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Teams is the Schema for the Teamss API. <no value>
+        description: Team is the Schema for the Teams API. Provides a Team resource.
         properties:
           apiVersion:
             description: |-
@@ -54,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: TeamsSpec defines the desired state of Teams
+            description: TeamSpec defines the desired state of Team
             properties:
               deletionPolicy:
                 default: Delete
@@ -73,8 +73,15 @@ spec:
               forProvider:
                 properties:
                   orgId:
+                    description: The unique identifier for the organization you want
+                      to associate the team with.
                     type: string
                   usernames:
+                    description: The Atlas usernames (email address). You can only
+                      add Atlas users who are part of the organization. Users who
+                      have not accepted an invitation to join the organization cannot
+                      be added as team members. There is a maximum of 250 Atlas users
+                      per team.
                     items:
                       type: string
                     type: array
@@ -94,8 +101,15 @@ spec:
                   autoscaler.
                 properties:
                   orgId:
+                    description: The unique identifier for the organization you want
+                      to associate the team with.
                     type: string
                   usernames:
+                    description: The Atlas usernames (email address). You can only
+                      add Atlas users who are part of the organization. Users who
+                      have not accepted an invitation to join the organization cannot
+                      be added as team members. There is a maximum of 250 Atlas users
+                      per team.
                     items:
                       type: string
                     type: array
@@ -278,17 +292,25 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.usernames)
                 || (has(self.initProvider) && has(self.initProvider.usernames))'
           status:
-            description: TeamsStatus defines the observed state of Teams.
+            description: TeamStatus defines the observed state of Team.
             properties:
               atProvider:
                 properties:
                   id:
                     type: string
                   orgId:
+                    description: The unique identifier for the organization you want
+                      to associate the team with.
                     type: string
                   teamId:
+                    description: The unique identifier for the team.
                     type: string
                   usernames:
+                    description: The Atlas usernames (email address). You can only
+                      add Atlas users who are part of the organization. Users who
+                      have not accepted an invitation to join the organization cannot
+                      be added as team members. There is a maximum of 250 Atlas users
+                      per team.
                     items:
                       type: string
                     type: array
